@@ -1,7 +1,7 @@
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr #pip install speechRecognition
+import pyttsx3  # pip install pyttsx3
+import speech_recognition as sr  # pip install speechRecognition
 import datetime
-import wikipedia  #pip install wikipedia
+import wikipedia  # pip install wikipedia
 import webbrowser
 import os
 import smtplib
@@ -19,10 +19,10 @@ def speak(audio):
 
 def wishMe():
     hour = int(datetime.datetime.now().hour)
-    if hour>=0 and hour<12:
+    if hour >= 0 and hour < 12:
         speak("Good Morning!")
 
-    elif hour>=12 and hour<18:
+    elif hour >= 12 and hour < 18:
         speak("Good Afternoon!")
 
     else:
@@ -30,8 +30,9 @@ def wishMe():
 
     speak("I am Assistant. Please tell me how may I help you")
 
+
 def takeCommand():
-    #It takes microphone input from the user and returns string output
+    # It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -50,6 +51,7 @@ def takeCommand():
         return "None"
     return query
 
+
 def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
@@ -58,10 +60,11 @@ def sendEmail(to, content):
     server.sendmail('youremail@gmail.com', to, content)
     server.close()
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     wishMe()
     while True:
-    # if 1:
+        # if 1:
         query = takeCommand().lower()
 
         # Logic for executing tasks based on query
@@ -82,7 +85,6 @@ if __name__ == "__main__":
         elif 'open stackoverflow' in query:
             webbrowser.open("stackoverflow.com")
 
-
         elif 'play music' in query:
             music_dir = 'D:\\Non Critical\\songs\\Favorite Songs2'
             songs = os.listdir(music_dir)
@@ -92,10 +94,6 @@ if __name__ == "__main__":
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f"Sir, the time is {strTime}")
-
-        #elif 'open code' in query:
-         #   codePath = "C:\Users\SHREE\PycharmProjects\microproject\micro.py"
-          #  os.startfile(codePath)
 
         elif 'email to saniya' in query:
             try:
@@ -107,4 +105,3 @@ if __name__ == "__main__":
             except Exception as e:
                 print(e)
                 speak("Sorry my friends I am not able to send this email")
-     
